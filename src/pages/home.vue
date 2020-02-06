@@ -13,6 +13,7 @@
   </div>
 </template>
 <script>
+import { topics } from '@/http'
 export default {
   name: 'home',
   data () {
@@ -28,11 +29,16 @@ export default {
         {
           name: '关于'
         }
-      ]
+      ],
+      params: {
+        page: 1,
+        tab: 'job',
+        limit: 1
+      }
     }
   },
   created () {
-
+    this.sum()
   },
   mounted () {
 
@@ -40,6 +46,13 @@ export default {
   methods: {
     toggleMenu (index, item) {
       this.active = index;
+    },
+    sum () {
+      topics(this.params).then(res => {
+        console.log(res)
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
   watch: {

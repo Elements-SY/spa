@@ -1,5 +1,7 @@
 <template>
-  <div class="register"></div>
+  <div class="register">
+    <h1>注册</h1>
+  </div>
 </template>
 <script>
 export default {

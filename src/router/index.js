@@ -23,7 +23,10 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: Login,
+      meta: {
+        request: true
+      }
     },
     {
       path: '/restAccount',
@@ -31,9 +34,12 @@ export default new Router({
       component: restAccount
     },
     {
-      path: '/',
+      path: '/home',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        request: true
+      },
     }
   ]
 })

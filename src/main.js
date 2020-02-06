@@ -12,6 +12,26 @@ import './http'
 Vue.use(ElementUI)
 Vue.use(Mint)
 Vue.config.productionTip = false
+var getToken = false
+router.beforeEach((to, from, next) => {
+  if (to.meta.request) {
+    if (to.path == "/login") {
+      next();
+    } else {
+      if (!getToken) {
+        next("/login");
+      } else {
+        next();
+      }
+    }
+  } else {
+    if (to.path == "/home") {
+      next("/home");
+    } else {
+      next();
+    }
+  }
+});
 
 /* eslint-disable no-new */
 new Vue({
