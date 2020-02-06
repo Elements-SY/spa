@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import './http'
+// import { getToken } from "@/utils/auth";
 Vue.use(ElementUI)
 Vue.use(Mint)
 Vue.config.productionTip = false
