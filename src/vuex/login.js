@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { setCookie, getCookie, removeToken } from "@/utils/auth";
+import { setCookie, getCookie, removeCookie } from "@/utils/auth";
 Vue.use(Vuex);
 const state = {
   user: "",
