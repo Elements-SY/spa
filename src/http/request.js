@@ -56,7 +56,7 @@ axios.interceptors.response.use(
   },
   error => {
     // NProgress.done()
-    console.log('状态码', error.response.status);
+    // console.log('状态码', error.response.status);
     if (error && error.response.status) {
       switch (error.response.status) {
         case 400:

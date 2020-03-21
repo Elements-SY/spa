@@ -4,9 +4,13 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import api from '../http/common';
 import dataList from './dataList'
+let APIHOST = 'https://cnodejs.org/api/v1'
+axios.defaults.baseURL = APIHOST
+axios.defaults.timeout = 10000
 export default {
   init () {
     let mock = new MockAdapter(axios);
+    // console.log(mock)
     // 模拟成功请求
     mock.onGet('/success').reply(200, {
       msg: 'success'
@@ -50,7 +54,7 @@ export default {
           // console.log(config.params)
           resolve([200, { code: 200, msg: 'success', data: dataList.music.types }]);
         } else {
-          resolve([200, { code: 200, msg: 'failure' }]);
+          reject([200, { code: 200, msg: 'failure' }]);
         }
       })
     });
@@ -58,10 +62,9 @@ export default {
     mock.onGet(api.music_songs).reply(config => {
       return new Promise((resolve, reject) => {
         if (config.params) {
-          // console.log(config.params)
           resolve([200, { code: 200, msg: 'success', data: dataList.music.songs }]);
         } else {
-          resolve([200, { code: 200, msg: 'failure' }]);
+          reject([200, { code: 200, msg: 'failure' }]);
         }
       })
     });
@@ -69,12 +72,12 @@ export default {
     mock.onGet(api.music_singer).reply(config => {
       return new Promise((resolve, reject) => {
         if (config.params) {
-          // console.log(config.params)
           resolve([200, { code: 200, msg: 'success', data: dataList.music.singer }]);
         } else {
-          resolve([200, { code: 200, msg: 'failure' }]);
+          reject([200, { code: 200, msg: 'failure' }]);
         }
       })
     });
+
   }
 }

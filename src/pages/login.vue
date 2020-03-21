@@ -57,6 +57,7 @@ export default {
             password: this.account.password
           }
           Login(loginParams).then(res => {
+            console.log(res);
             this.logining = false;
             let { code, msg, user } = res.data;
             if (code === 200) {

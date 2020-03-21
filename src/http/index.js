@@ -16,3 +16,7 @@ export const music_singer = params => {
   // 歌手列表
   return request('GET', api.music_singer, params)
 }
+export const topics = params => {
+  // CNode主题首页
+  return request('GET', api.topics, params)
+}

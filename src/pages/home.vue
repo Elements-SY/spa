@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-import { music_types, music_songs, music_singer } from '@/http'
+import { music_types, music_songs, music_singer, topics } from '@/http'
 import axios from 'axios'
 export default {
   name: 'home',
@@ -51,30 +51,68 @@ export default {
   mounted () {
     // 合并所有请求
     var allRequest = [
+      this.getTopics(), // CNode主题首页
       this.musicTypes(), // 音乐类型
       this.musicSongs(), // 音乐列表
       this.musicSinger(), // 歌手列表
     ]
     axios.all(allRequest)
-      .then(axios.spread(function (...agrs) {
+      .then(axios.spread((...agrs) => {
         console.log(agrs)
-      }))
+      })).catch(error => {
+        console.log(error)
+      })
   },
   methods: {
     toggleMenu (index, item) {
       this.active = index;
     },
+    // CNode主题首页
+    getTopics () {
+      return topics(this.params).then(res => {
+        return res
+      }, err => {
+        Object.keys(err).map((key) => {
+          console.log(err[key])
+          if (err[key].status == 404) {
+            console.log('未找到该资源')
+          }
+        })
+        return err
+      }).catch(error => {
+        console.log(error)
+        return error
+      })
+    },
     // 音乐类型
     musicTypes () {
-      return music_types(this.params)
+      return music_types(this.params).then(res => {
+        return res
+      }, err => {
+        return err
+      }).catch(error => {
+        return error
+      })
     },
     // 音乐列表
     musicSongs () {
-      return music_songs(this.params)
+      return music_songs(this.params).then(res => {
+        return res
+      }, err => {
+        return err
+      }).catch(error => {
+        return error
+      })
     },
     // 歌手列表
     musicSinger () {
-      return music_singer(this.params)
+      return music_singer(this.params).then(res => {
+        return res
+      }, err => {
+        return err
+      }).catch(error => {
+        return error
+      })
     },
 
   },

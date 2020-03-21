@@ -4,4 +4,5 @@ export default {
   music_types: '/music/types', // 音乐类型
   music_songs: '/music/songs', // 音乐列表
   music_singer: '/music/singer', // 歌手列表
+  topics: '/topics', // CNode主题首页
 }
