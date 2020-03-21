@@ -4,6 +4,12 @@
 
 ## Build Setup
 
+## 该项目已经对终端适配做好了配置，开箱即用
+
+## http全局配置及路由拦截 
+
+## axios mockjs axios-mock-adapter 单元测试
+
 ``` bash
 # install dependencies
 npm install
@@ -25,6 +31,6 @@ npm run e2e
 
 # run all tests
 npm test
+
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
