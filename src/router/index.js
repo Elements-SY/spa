@@ -5,6 +5,7 @@ const Register = () => import('@/pages/register') // 拥护注册
 const Login = () => import('@/pages/login') // 用户登录
 const restAccount = () => import('@/pages/restAccount') // 重置帐号信息
 const Home = () => import('@/pages/home') // 首页
+const About = () => import('@/pages/about') // 关于
 
 Vue.use(Router)
 
@@ -13,7 +14,10 @@ export default new Router({
     {
       path: '*',
       name: 'notFound',
-      component: notFound
+      component: notFound,
+      meta: {
+        request: true
+      }
     },
     {
       path: '/register',
@@ -37,6 +41,14 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: Home,
+      meta: {
+        request: true
+      },
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About,
       meta: {
         request: true
       },

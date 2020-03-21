@@ -10,7 +10,9 @@ axios.defaults.timeout = 10000
 switch (process.env.NODE_ENV) {
   // 开发环境
   case 'development':
-    APIHOST = '开发环境'
+    // APIHOST = '开发环境'
+    APIHOST = 'https://cnodejs.org/api/v1'
+    // APIHOST = 'http://127.0.0.1:8080'
     break
   // 测试环境
   case 'testing':
@@ -21,7 +23,7 @@ switch (process.env.NODE_ENV) {
     APIHOST = '生产环境'
     break
 }
-console.log(APIHOST)
+// console.log(APIHOST)
 const options = {
   text: 'Loading. . .'
 }

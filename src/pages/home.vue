@@ -10,10 +10,19 @@
         <a href="javascript:;">{{item.name}}</a>
       </li>
     </ul>
+    <el-row>
+      <el-button>默认按钮</el-button>
+      <el-button type="primary">主要按钮</el-button>
+      <el-button type="success">成功按钮</el-button>
+      <el-button type="info">信息按钮</el-button>
+      <el-button type="warning">警告按钮</el-button>
+      <el-button type="danger">危险按钮</el-button>
+    </el-row>
   </div>
 </template>
 <script>
-import { topics } from '@/http'
+import { music_types, music_songs, music_singer } from '@/http'
+import axios from 'axios'
 export default {
   name: 'home',
   data () {
@@ -38,22 +47,36 @@ export default {
     }
   },
   created () {
-    this.sum()
   },
   mounted () {
-
+    // 合并所有请求
+    var allRequest = [
+      this.musicTypes(), // 音乐类型
+      this.musicSongs(), // 音乐列表
+      this.musicSinger(), // 歌手列表
+    ]
+    axios.all(allRequest)
+      .then(axios.spread(function (...agrs) {
+        console.log(agrs)
+      }))
   },
   methods: {
     toggleMenu (index, item) {
       this.active = index;
     },
-    sum () {
-      topics(this.params).then(res => {
-        console.log(res)
-      }).catch(error => {
-        console.log(error)
-      })
-    }
+    // 音乐类型
+    musicTypes () {
+      return music_types(this.params)
+    },
+    // 音乐列表
+    musicSongs () {
+      return music_songs(this.params)
+    },
+    // 歌手列表
+    musicSinger () {
+      return music_singer(this.params)
+    },
+
   },
   watch: {
 
