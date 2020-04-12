@@ -25,6 +25,7 @@ export default {
       let lineEcharts = this.$echarts.init(this.$refs.line_echarts)
       // Line 折线图 指定图表的配置项和数据
       let lineOption = {
+        // 标题组件，包含主标题和副标题。
         title: [{
           text: '{b_title|收入趋势}{b_unit|（单位/万元）}',
           textStyle: {
@@ -38,6 +39,7 @@ export default {
             }
           }
         }],
+        // 提示框组件
         tooltip: {
           trigger: 'axis',
           axisPointer: { // 坐标轴指示器，坐标轴触发有效
