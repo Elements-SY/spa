@@ -12,16 +12,27 @@
     </ul>
     <!-- Line 折线图 -->
     <line-echarts></line-echarts>
+
+    <timer-echarts></timer-echarts>
+    <el-button
+      type="primary"
+      size="small"
+      class="clear-btn m-t-sm m-b-sm"
+      @click="resetForm"
+      v-no-more-click
+    >防止重复提交</el-button>
   </div>
 </template>
 <script>
 import lineEcharts from '@/components/lineEcharts'
+import timerEcharts from '@/components/timerEcharts'
 import { music_types, music_songs, music_singer, topics } from '@/http'
 import axios from 'axios'
 export default {
   name: 'home',
   components: {
     'line-echarts': lineEcharts,
+    'timer-echarts': timerEcharts
   },
   data () {
     return {
@@ -47,6 +58,21 @@ export default {
   created () {
 
   },
+  directives: {
+    // 防止重复提交
+    noMoreClick: {
+      inserted (el, binding) {
+        el.addEventListener('click', () => {
+          el.classList.add('is-disabled');
+          el.disabled = true;
+          setTimeout(() => {
+            el.disabled = false;
+            el.classList.remove('is-disabled');
+          }, 2000)
+        })
+      }
+    }
+  },
   mounted () {
     // 合并所有请求
     var allRequest = [
@@ -57,14 +83,17 @@ export default {
     ]
     axios.all(allRequest)
       .then(axios.spread((...agrs) => {
-        console.log(agrs)
+        // console.log(agrs)
       })).catch(error => {
-        console.log(error)
+        // console.log(error)
       })
   },
   methods: {
     toggleMenu (index, item) {
       this.active = index;
+    },
+    resetForm () {
+      console.log(1)
     },
     // CNode主题首页
     getTopics () {
@@ -72,14 +101,14 @@ export default {
         return res
       }, err => {
         Object.keys(err).map((key) => {
-          console.log(err[key])
+          // console.log(err[key])
           if (err[key].status == 404) {
-            console.log('未找到该资源')
+            // console.log('未找到该资源')
           }
         })
         return err
       }).catch(error => {
-        console.log(error)
+        // console.log(error)
         return error
       })
     },

@@ -8,6 +8,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 // import './http'
 import Mock from './mock'
 Mock.init()
