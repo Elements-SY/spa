@@ -10,21 +10,19 @@
         <a href="javascript:;">{{item.name}}</a>
       </li>
     </ul>
-    <el-row>
-      <el-button>默认按钮</el-button>
-      <el-button type="primary">主要按钮</el-button>
-      <el-button type="success">成功按钮</el-button>
-      <el-button type="info">信息按钮</el-button>
-      <el-button type="warning">警告按钮</el-button>
-      <el-button type="danger">危险按钮</el-button>
-    </el-row>
+    <!-- Line 折线图 -->
+    <line-echarts></line-echarts>
   </div>
 </template>
 <script>
+import lineEcharts from '@/components/lineEcharts'
 import { music_types, music_songs, music_singer, topics } from '@/http'
 import axios from 'axios'
 export default {
   name: 'home',
+  components: {
+    'line-echarts': lineEcharts,
+  },
   data () {
     return {
       active: 0,
@@ -47,6 +45,7 @@ export default {
     }
   },
   created () {
+
   },
   mounted () {
     // 合并所有请求
@@ -130,5 +129,9 @@ li {
   flex: 1;
   text-align: center;
   line-height: 80px;
+}
+.charts {
+  width: 300px;
+  height: 300px;
 }
 </style>
